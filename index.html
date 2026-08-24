@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forever Blooming | Artisan Handcrafted Crafts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #f06292;
+      --primary-dark: #d81b60;
+      --accent: #ffb74d;
+      --bg: #fffdfa;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border: #f3f4f6;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 8%;
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 8% 60px;
+      gap: 40px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .hero-text {
+      flex: 1.1;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fce4ec;
+      color: var(--primary-dark);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      line-height: 1.15;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 18px;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary-dark);
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(216, 27, 96, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid #e5e7eb;
+    }
+
+    .btn-secondary:hover {
+      background: #f9fafb;
+    }
+
+    .hero-gallery {
+      flex: 0.9;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .hero-gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Filter & Catalog */
+    .catalog-section {
+      padding: 60px 8% 80px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #111827;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary-dark);
+      color: #ffffff;
+      border-color: var(--primary-dark);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .product-details {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .product-details h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .product-details p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    .view-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 520px;
+      overflow: hidden;
+      animation: zoomIn 0.25s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-body h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .modal-body p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .modal-btn-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Footer */
+    footer {
+      background: #111827;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 40px;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="brand">🌸 Forever Blooming</div>
+    <ul class="nav-links">
+      <li><a href="#catalog">Collection</a></li>
+      <li><a href="#custom">Custom Order</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="#catalog" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.85rem;">Shop Now</a>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="hero">
+    <div class="hero-text">
+      <span class="badge">Handmade With Love</span>
+      <h1>Everlasting Flora & Fuzzy Artistry</h1>
+      <p>Turning simple fuzzy wire into timeless, colorful joy. Discover non-wilting handmade flower bouquets, vibrant aesthetic night lamps, and charming accessories.</p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn btn-primary">Browse Collection</a>
+        <a href="https://wa.me/?text=Hi%20I%20want%20to%20customize%20pipe%20cleaner%20crafts!" target="_blank" class="btn btn-secondary">Request Custom</a>
+      </div>
+    </div>
+    
+    <div class="hero-gallery">
+      <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80" alt="Everlasting Flowers">
+      <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80" alt="Floral Crafts">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Hair Accessories">
+      <img src="https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80" alt="Floral Pot">
+    </div>
+  </header>
+
+  <!-- Product Catalog Section -->
+  <section class="catalog-section" id="catalog">
+    <div class="section-title">
+      <h2>Explore Our Creations</h2>
+      <p style="color: var(--text-muted); margin-top: 6px;">Click on any piece for complete information & customization options</p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterItems('all')">All Items</button>
+      <button class="filter-btn" onclick="filterItems('bouquets')">Bouquets & Lamps</button>
+      <button class="filter-btn" onclick="filterItems('hair')">Hair Accessories</button>
+      <button class="filter-btn" onclick="filterItems('keychains')">Keychains</button>
+    </div>
+
+    <!-- Dynamic Grid -->
+    <div class="product-grid" id="productContainer"></div>
+  </section>
+
+  <!-- Product Modal Popup -->
+  <div class="modal" id="productModal" onclick="closeModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <img id="modalImg" class="modal-img" src="" alt="Product Detail">
+      <div class="modal-body">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <div class="modal-btn-row">
+          <a id="orderBtn" href="#" target="_blank" class="btn btn-primary" style="flex: 1; justify-content: center;">Order via WhatsApp</a>
+          <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Forever Blooming Crafts. Handcrafted perfection that never wilts.</p>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        category: 'bouquets',
+        tag: 'Everlasting Flowers',
+        title: 'Everlasting Pipe Cleaner Bouquet',
+        desc: "These won't die in three days. Soft, fuzzy, and forever blooming. A handmade pipe cleaner bouquet is a sweet, creative way to gift everlasting flowers that never need water and will stay with you forever.",
+        img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 2,
+        category: 'bouquets',
+        tag: 'Home Decor',
+        title: 'Glowing Floral Lamp & Vase Stems',
+        desc: 'Twisted wire turned into functional glowing art. These cute fairy-light flower lamps and tabletop vase stems add warm, cozy ambient light to your study table or bedroom.',
+        img: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 3,
+        category: 'hair',
+        tag: 'Wearable Art',
+        title: 'Artisan Floral Hair Accessories',
+        desc: 'Crafting delicate hair accessories every day. From daisy clips to cherry butterfly hairpins, you can request custom colors to pair perfectly with your daily outfits.',
+        img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 4,
+        category: 'keychains',
+        tag: 'Cute Charm',
+        title: 'Fluffy Pipe Cleaner Keychains',
+        desc: 'This fluffy pipe cleaner keychain brings a tiny pop of joy to your everyday keys, backpack, or tote bag. Durable, lightweight, and ultra-soft.',
+        img: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80'
+      }
+    ];
+
+    function renderProducts(items) {
+      const container = document.getElementById('productContainer');
+      container.innerHTML = '';
+
+      items.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => openModal(product);
+
+        card.innerHTML = `
+          <img class="product-img" src="${product.img}" alt="${product.title}">
+          <div class="product-details">
+            <span class="product-tag">${product.tag}</span>
+            <h3>${product.title}</h3>
+            <p>${product.desc.substring(0, 85)}...</p>
+            <div class="card-footer">
+              <span class="view-link">Tap for Details →</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterItems(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (category === 'all') {
+        renderProducts(products);
+      } else {
+        renderProducts(products.filter(item => item.category === category));
+      }
+    }
+
+    function openModal(product) {
+      document.getElementById('modalTitle').innerText = product.title;
+      document.getElementById('modalDesc').innerText = product.desc;
+      document.getElementById('modalImg').src = product.img;
+      document.getElementById('orderBtn').href = `https://wa.me/?text=Hi!%20I'm%20interested%20in%20ordering%20the%20${encodeURIComponent(product.title)}`;
+      document.getElementById('productModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').classList.remove('active');
+    }
+
+    // Initial render
+    renderProducts(products);
+  </script>
+</body>
+</html>
+
